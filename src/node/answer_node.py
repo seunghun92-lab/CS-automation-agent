@@ -5,6 +5,10 @@ def answer_node(state: AgentState) -> AgentState:
     user_input = state["user_input"]
     search_results = state["search_results"]
     
+    print(f"검색 결과 내용:")
+    for i, doc in enumerate(search_results):
+        print(f"{i+1}. {doc.page_content[:50]}...")
+
     # 검색 결과 텍스트로 변환
     context = "\n\n".join([doc.page_content for doc in search_results])
     
@@ -22,6 +26,7 @@ def answer_node(state: AgentState) -> AgentState:
     2. 친절하고 명확하게 답변하세요
     3. FAQ에 없는 내용은 답변하지 마세요
     4. FAQ로 해결이 어려우면 "상담원 연결이 필요합니다"라고 답하세요
+    5. 고객이 화났거나 책임자/상담원을 요청하면 반드시 "상담원 연결이 필요합니다"라고 답하세요
     """
     
     response = llm.invoke(prompt)

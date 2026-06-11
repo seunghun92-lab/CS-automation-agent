@@ -5,10 +5,15 @@ from langchain_openai import OpenAIEmbeddings
 from langchain_chroma import Chroma
 from langchain_core.documents import Document
 
-load_dotenv(dotenv_path="../.env", override=True)
+# 절대 경로 설정
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+load_dotenv(dotenv_path=os.path.join(BASE_DIR, ".env"), override=True)
+
+CHROMA_PATH = os.path.join(BASE_DIR, "data", "chroma_db")
+FAQ_PATH = os.path.join(BASE_DIR, "data", "musinsa_faq.json")
 
 def load_faq_data():
-    with open("../data/musinsa_faq.json", "r", encoding="utf-8") as f:
+    with open(FAQ_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
 
 def create_vectorstore():
@@ -32,7 +37,7 @@ def create_vectorstore():
     vectorstore = Chroma.from_documents(
         documents=documents,
         embedding=embeddings,
-        persist_directory="../data/chroma_db"
+        persist_directory=CHROMA_PATH
     )
     
     print("임베딩 완료!")
@@ -42,7 +47,7 @@ def search_faq(query, k=3):
     embeddings = OpenAIEmbeddings(model="text-embedding-3-small")
     
     vectorstore = Chroma(
-        persist_directory="../data/chroma_db",
+        persist_directory=CHROMA_PATH,
         embedding_function=embeddings
     )
     
