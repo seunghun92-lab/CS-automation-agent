@@ -7,18 +7,18 @@ import os
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from agent import create_agent
+from orchestrator import create_orchestrator
 
 # MCP 서버 생성
 server = Server("cs-agent")
-agent = create_agent()
+orchestrator = create_orchestrator()
 
 @server.list_tools()
 async def list_tools() -> list[Tool]:
     return [
         Tool(
             name="cs_agent",
-            description="무신사 고객센터 AI 에이전트입니다. 고객 문의를 입력하면 FAQ 기반으로 답변합니다.",
+            description="무신사 고객센터 AI 에이전트입니다. 고객 문의, 주문 조회, 상품 검색, 배송 조회를 처리합니다.",
             inputSchema={
                 "type": "object",
                 "properties": {
@@ -37,7 +37,7 @@ async def call_tool(name: str, arguments: dict) -> list[TextContent]:
     if name == "cs_agent":
         user_input = arguments["user_input"]
         
-        result = agent.invoke({
+        result = orchestrator.invoke({
             "user_input": user_input,
             "category": "",
             "search_results": [],
