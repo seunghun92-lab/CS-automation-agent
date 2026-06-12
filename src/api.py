@@ -5,7 +5,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
-from backend.src.orchestrator import create_orchestrator
+from orchestrator import create_orchestrator
 
 app = FastAPI()
 

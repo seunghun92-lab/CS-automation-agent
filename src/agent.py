@@ -22,9 +22,10 @@ def create_agent():
     
     graph.add_conditional_edges(
         "answer",
-        lambda state: "escalate" if state["escalate"] else END,
+        lambda state: "escalate" if state["escalate"] else ("search" if state.get("retry") else END),
         {
             "escalate": "escalate",
+            "search": "search",
             END: END
         }
     )

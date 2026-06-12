@@ -4,12 +4,12 @@ from agent_state import AgentState
 def answer_node(state: AgentState) -> AgentState:
     user_input = state["user_input"]
     search_results = state["search_results"]
+    retry_count = state.get("retry_count", 0)
     
-    print(f"검색 결과 내용:")
-    for i, doc in enumerate(search_results):
-        print(f"{i+1}. {doc.page_content[:50]}...")
-
-    # 검색 결과 텍스트로 변환
+    # 검색 결과 없으면 바로 에스컬레이션
+    if not search_results:
+        return {**state, "answer": "상담원 연결이 필요합니다", "escalate": True, "retry_count": retry_count}
+    
     context = "\n\n".join([doc.page_content for doc in search_results])
     
     prompt = f"""
@@ -32,10 +32,16 @@ def answer_node(state: AgentState) -> AgentState:
     response = llm.invoke(prompt)
     answer = response.content.strip()
     
-    # 에스컬레이션 여부 판단
+    # 에스컬레이션 여부
     escalate = "상담원 연결이 필요합니다" in answer
     
-    print(f"답변 생성 완료")
+    # 답변 품질 낮으면 재검색 (최대 2회)
+    retry = False
+    if retry_count < 2:
+        if "모르" in answer or "없습니다" in answer or "확인이 어렵" in answer:
+            retry = True
+    
+    print(f"답변 생성 완료 (retry_count: {retry_count}, retry: {retry})")
     print(f"에스컬레이션: {escalate}")
     
-    return {**state, "answer": answer, "escalate": escalate}
+    return {**state, "answer": answer, "escalate": escalate, "retry": retry, "retry_count": retry_count + 1}

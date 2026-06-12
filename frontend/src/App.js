@@ -17,7 +17,7 @@ export default function App() {
   const [messages, setMessages] = useState([
     {
       role: "bot",
-      content: "안녕하세요! Vella 쇼핑몰 AI 상담사입니다 😊\n주문, 배송, 교환·반품 등 무엇이든 편하게 물어보세요!",
+      content: "안녕하세요! MUSINSA 쇼핑몰 AI 상담사입니다 😊\n주문, 배송, 교환·반품 등 무엇이든 편하게 물어보세요!",
     },
   ]);
   const [input, setInput] = useState("");
@@ -59,9 +59,9 @@ export default function App() {
       {/* 사이드바 */}
       <aside style={styles.sidebar}>
         <div style={styles.logo}>
-          <div style={styles.logoIcon}>V</div>
+          <div style={styles.logoIcon}>M</div>
           <div>
-            <div style={styles.logoTitle}>VELLA</div>
+            <div style={styles.logoTitle}>MUSINSA</div>
             <div style={styles.logoSub}>AI 고객상담</div>
           </div>
         </div>
@@ -71,7 +71,7 @@ export default function App() {
           onClick={() =>
             setMessages([{
               role: "bot",
-              content: "안녕하세요! Vella 쇼핑몰 AI 상담사입니다 😊\n주문, 배송, 교환·반품 등 무엇이든 편하게 물어보세요!",
+              content: "안녕하세요! MUSINSA 쇼핑몰 AI 상담사입니다 😊\n주문, 배송, 교환·반품 등 무엇이든 편하게 물어보세요!",
             }])
           }
         >
@@ -113,7 +113,7 @@ export default function App() {
           <div style={styles.agentInfo}>
             <div style={styles.agentAvatar}>AI</div>
             <div>
-              <div style={styles.agentName}>Vella 상담사</div>
+              <div style={styles.agentName}>MUSINSA AI 고객상담사</div>
               <div style={styles.agentStatus}>
                 <span style={styles.statusDot}></span>
                 24시간 상담 가능
@@ -176,7 +176,7 @@ export default function App() {
             ▶
           </button>
         </div>
-        <div style={styles.footer}>Vella AI 상담사가 도와드립니다.</div>
+        <div style={styles.footer}>AI 상담사가 도와드립니다.</div>
       </main>
     </div>
   );
