@@ -2,6 +2,8 @@
 
 무신사 FAQ 기반 LangGraph 멀티에이전트 CS 자동화 시스템
 
+![MUSINSA](assets/musinsa.png)
+
 [![Vercel](https://img.shields.io/badge/Vercel-배포됨-black?logo=vercel)](https://cs-automation-agent-git-main-seunghun-s-projects1.vercel.app/)
 [![Railway](https://img.shields.io/badge/Railway-배포됨-purple?logo=railway)](https://cs-automation-agent-production.up.railway.app)
 
@@ -47,7 +49,7 @@
 
 반복적인 고객 문의를 AI 에이전트로 자동화하여 CS 운영 효율을 높이는 시스템입니다.
 
-- Playwright로 무신사 FAQ 200여건 크롤링
+- Playwright로 무신사 FAQ 202개 크롤링
 - RAG 파이프라인 (ChromaDB + OpenAI Embedding)으로 관련 FAQ 검색
 - LangGraph 기반 멀티에이전트로 문의 유형별 자동 라우팅
 - MCP 서버로 Claude Desktop 연동
@@ -103,12 +105,12 @@ graph TD
 ```mermaid
 flowchart TD
     A(["👤 사용자 문의 입력"]) --> B(["🏷️ classify_node\n카테고리 분류"])
-    B --> C(["🔍 search_node\nRAG 검색"])
-    C --> D(["💬 answer_node\n답변 생성"])
+    B --> C(["search_node\nRAG 검색"])
+    C --> D(["answer_node\n답변 생성"])
     D --> E{"품질 판단"}
     E -->|"품질 낮음 - 최대 2회"| C
     E -->|"에스컬레이션 필요"| F(["📞 escalate_node\n상담원 연결 안내"])
-    E -->|"정상"| G(["✅ END\n답변 반환"])
+    E -->|"정상"| G(["END\n답변 반환"])
     F --> G
 ```
 
@@ -310,4 +312,5 @@ ModuleNotFoundError: No module named 'mcp'
 
 신승훈 | AI 에이전트 개발자
 
-GitHub: [@seunghun92-lab](https://github.com/seunghun92-lab)
+GitHub : [@seunghun92-lab](https://github.com/seunghun92-lab)
+Gmail : seunghunsin92@gmail.com
