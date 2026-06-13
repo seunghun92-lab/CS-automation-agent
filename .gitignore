@@ -20,4 +20,4 @@ data/chroma_db/
 *.log
 
 assets/*.mp4
-assets/*.gif
+assets/*.gifassets/
