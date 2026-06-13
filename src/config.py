@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_chroma import Chroma
 from langchain_openai import OpenAIEmbeddings
+from langfuse.langchain import CallbackHandler
 
 # 절대 경로 설정
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,3 +24,6 @@ vectorstore = Chroma(
     persist_directory=CHROMA_PATH,
     embedding_function=embeddings
 )
+
+# LangFuse 핸들러
+langfuse_handler = CallbackHandler()
