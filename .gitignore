@@ -1,0 +1,20 @@
+# 가상환경
+venv/
+
+# 환경변수
+.env
+
+# 파이썬 캐시
+__pycache__/
+*.pyc
+*.pyo
+
+# VSCode
+.vscode/
+
+# ChromaDB
+data/chroma_db/
+
+# 기타
+.DS_Store
+*.log
