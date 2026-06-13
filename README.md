@@ -49,7 +49,7 @@
 
 반복적인 고객 문의를 AI 에이전트로 자동화하여 CS 운영 효율을 높이는 시스템입니다.
 
-- Playwright로 무신사 FAQ 202개 크롤링
+- Playwright로 무신사 FAQ 페이지 크롤링
 - RAG 파이프라인 (ChromaDB + OpenAI Embedding)으로 관련 FAQ 검색
 - LangGraph 기반 멀티에이전트로 문의 유형별 자동 라우팅
 - MCP 서버로 Claude Desktop 연동
