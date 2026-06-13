@@ -21,10 +21,10 @@ app.add_middleware(
 
 # chroma_db 없으면 자동 생성
 CHROMA_PATH = os.path.join(BASE_DIR, "data", "chroma_db")
-if not os.path.exists(CHROMA_PATH):
-    print("chroma_db 없음 → 자동 생성 중...")
-    create_vectorstore()
-    print("chroma_db 생성 완료!")
+print("ChromaDB 생성 중...")
+create_vectorstore()
+print("ChromaDB 생성 완료!")
+
 
 orchestrator = create_orchestrator()
 
